@@ -18,12 +18,16 @@ import SettingsPanel from './components/settingsPanel';
 const STORAGE_KEY = 'reactflow_state';
 
 const App: React.FC = () => {
+
+  // State hooks for nodes, edges, selected node, message, and message type
+
   const [nodes, setNodes, onNodesChange] = useNodesState<Node[]>(initialNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState<Edge[]>(initialEdges);
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [messageType, setMessageType] = useState<'success' | 'error' | null>(null);
 
+  // Load saved flow from localStorage when the component mounts
   useEffect(() => {
     const savedFlow = localStorage.getItem(STORAGE_KEY);
     if (savedFlow) {
@@ -33,6 +37,8 @@ const App: React.FC = () => {
     }
   }, [setNodes, setEdges]);
 
+
+  // Callback function to handle connecting nodes
   const onConnect = useCallback(
     (connection: Connection | Edge) => {
       // Check if source already has an outgoing edge
@@ -48,32 +54,39 @@ const App: React.FC = () => {
     [edges, setEdges]
   );
 
+  // Function to add a new node
   const addNode = (node: Node) => {
     setNodes((nds) => [...nds, node]);
   };
 
+  // Function to handle clicking on a node
   const handleNodeClick = (event: React.MouseEvent, node: Node) => {
     setSelectedNode(node);
   };
 
+  // Function to handle clicking on the pane (deselect node)
   const handlePaneClick = () => {
     setSelectedNode(null);
   };
 
+  // Function to update a node
   const handleNodeUpdate = (updatedNode: Node) => {
     setNodes((nds) => nds.map((n) => (n.id === updatedNode.id ? updatedNode : n)));
   };
 
+  // Function to handle going back from the settings panel
   const handleBack = () => {
     setSelectedNode(null);
   };
 
+  // Function to check if there are multiple nodes with empty target handles
   const hasMultipleEmptyTargetHandles = (nodes: Node[], edges: Edge[]): boolean => {
     const targetNodeIds = new Set(edges.map(edge => edge.target));
     const nodesWithEmptyTargetHandles = nodes.filter(node => !targetNodeIds.has(node.id));
     return nodesWithEmptyTargetHandles.length > 1;
   };
 
+  // Function to save the flow to localStorage
   const saveFlow = () => {
     if (hasMultipleEmptyTargetHandles(nodes, edges)) {
       setMessageType('error');
@@ -98,6 +111,7 @@ const App: React.FC = () => {
     }
   }, [message]);
 
+  // Function to close the message
   const handleMessageClose = () => {
     setMessage(null);
     setMessageType(null);
@@ -107,7 +121,7 @@ const App: React.FC = () => {
   return (
     <div className="flex flex-col h-screen">
       <div className="bg-slate-100 p-2 flex justify-between items-center pr-24">
-        <p className='font-semibold'>
+        <p className='font-bold text-violet-900'>
           ChatBot Flow Builder
         </p>
         {message && (

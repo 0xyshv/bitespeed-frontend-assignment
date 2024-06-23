@@ -1,12 +1,12 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
+import ReactDOM from "react-dom/client";
+import { ReactFlowProvider } from "reactflow";
 
-import App from './App';
+import App from "./App";
 
-import './index.css';
+import "./index.css";
 
-ReactDOM.createRoot(document.getElementById('root')!).render(
-  <React.StrictMode>
+ReactDOM.createRoot(document.getElementById("root")!).render(
+  <ReactFlowProvider>
     <App />
-  </React.StrictMode>
+  </ReactFlowProvider>
 );

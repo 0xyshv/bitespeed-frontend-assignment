@@ -5,14 +5,14 @@ export const initialNodes = [
   {
     id: "a",
     type: "position-logger",
-    position: { x: -200, y: 50 },
+    position: { x: -500, y: -100 },
     data: { label: "Node 1" },
   },
 
   {
     id: "b",
     type: "position-logger",
-    position: { x: 0, y: 200 },
+    position: { x: -200, y: 50 },
     data: { label: "Node 2" },
   },
 ] satisfies Node[];

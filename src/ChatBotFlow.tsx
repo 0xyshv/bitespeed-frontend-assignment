@@ -77,8 +77,11 @@ const ChatBotFlow: React.FC = () => {
   };
 
   // Function to handle clicking on a node
+
   const handleNodeClick = (event: React.MouseEvent, node: Node) => {
     setSelectedNode(node);
+    console.log(event);
+
   };
 
   // Function to handle clicking on the pane (deselect node)
@@ -158,7 +161,7 @@ const ChatBotFlow: React.FC = () => {
           ChatBot Flow Builder
         </p>
         {message && (
-          <div className={`relative w-[600px] flex gap-2 items-center p-2 rounded-lg ${messageType === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+          <div className={`relative w-[600px] flex justify-center items-center p-2 rounded-lg ${messageType === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
             {message}
             <button onClick={handleMessageClose} className="absolute top-2 right-4 text-black  ">
               X

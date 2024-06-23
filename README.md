@@ -41,10 +41,12 @@ Follow these instructions to set up and run the project:
 
 ![image](/screenshots/5.png)
 
-**Single Eedge flow from source handler of different nodes**
+**Single edge flow from source handler of different nodes**
+
 ![image](/screenshots/6.png)
 
 **Changing the text of the message nodes**
+
 ![image](/screenshots/7.png)
 
 **Saving of flow successfully**

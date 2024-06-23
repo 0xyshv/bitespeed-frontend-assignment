@@ -25,10 +25,31 @@ Follow these instructions to set up and run the project:
 
 ## App Demo Screenshots
 
-![image](/public/appDemo/1.png)
-![image](/public/appDemo/2.jpg)
-![image](/public/appDemo/3.jpg)
-![image](/public/appDemo/4.jpg)
+**Two text nodes connecting source handle of test-message-1 to target handle of test-message 2.**
+
+![image](/screenshots/2.png)
+
+**Drag and Drop a new message node from the Nodes Panel**
+
+![image](/screenshots/3.png)
+
+**Layout of the new message node**
+
+![image](/screenshots/4.png)
+
+**Trying to connect two edges from a source handler**
+
+![image](/screenshots/5.png)
+
+**Single Eedge flow from source handler of different nodes**
+![image](/screenshots/6.png)
+
+**Changing the text of the message nodes**
+![image](/screenshots/7.png)
+
+**Saving of flow successfully**
+
+![image](/screenshots/8.png)
 
 ### Github
 

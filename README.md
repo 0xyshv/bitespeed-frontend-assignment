@@ -10,7 +10,7 @@ It is a simple Chatbot flow builder using React and the code is extensible to ea
 
 ## Deployment Link
 
-- [Deployed URL]()
+- [Deployed URL](https://bitespeed-frontend-assignment-iota.vercel.app/)
 
 ## Instructions to Setup
 

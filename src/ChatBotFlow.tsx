@@ -15,11 +15,11 @@ import { initialNodes, nodeTypes } from './nodes';
 import { initialEdges, edgeTypes } from './edges';
 import NodePanel from './components/nodePanel';
 import SettingsPanel from './components/settingsPanel';
-
+import { nanoid } from 'nanoid'
 const STORAGE_KEY = 'reactflow_state';
 
-let id = 2; // Two initial nodes with id chatbotnode_0 & chatbotnode_1 added by default
-const getId = () => `chatbotnode_${id++}`;
+
+const getId = () => `chatbotnode_${nanoid()}`;
 
 const ChatBotFlow: React.FC = () => {
 

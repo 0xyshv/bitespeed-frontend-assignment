@@ -1,7 +1,6 @@
-// SettingsPanel.tsx
 import React, { useState, useEffect } from 'react';
 import type { Node } from 'reactflow';
-import { ArrowLeftIcon } from 'lucide-react'; // Import back arrow icon
+import { ArrowLeftIcon } from 'lucide-react';
 
 interface SettingsPanelProps {
   selectedNode: Node | null;
@@ -38,7 +37,7 @@ const SettingsPanel: React.FC<SettingsPanelProps> = ({ selectedNode, onUpdate, o
         <button onClick={onBack} className="mr-2">
           <ArrowLeftIcon />
         </button>
-        <h3 className="text-xl font-bold">Settings</h3>
+        <h3 className="text-xl font-bold">Message</h3>
       </div>
       <div>
         <label className="block text-sm font-medium text-gray-700">Label</label>

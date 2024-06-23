@@ -34,8 +34,8 @@ export function PositionLoggerNode({
       <div>
         {/* {x} {y} */}
       </div>
-      <Handle type="target" position={Position.Left} />
-      <Handle type="source" position={Position.Right} />
+      <Handle type="target" position={Position.Left} isConnectableEnd />
+      <Handle type="source" position={Position.Right} isConnectableStart />
     </div>
   );
 }

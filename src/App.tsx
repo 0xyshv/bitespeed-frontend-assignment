@@ -34,8 +34,18 @@ const App: React.FC = () => {
   }, [setNodes, setEdges]);
 
   const onConnect = useCallback(
-    (connection: Connection | Edge) => setEdges((eds) => addEdge(connection, eds)),
-    [setEdges]
+    (connection: Connection | Edge) => {
+      // Check if source already has an outgoing edge
+      const existingEdges = edges.filter(edge => edge.source === connection.source && edge.sourceHandle === connection.sourceHandle);
+      if (existingEdges.length > 0) {
+        setMessageType('error');
+        setMessage('Source handle can only have one outgoing edge.');
+        return;
+      }
+
+      setEdges((eds) => addEdge(connection, eds));
+    },
+    [edges, setEdges]
   );
 
   const addNode = (node: Node) => {
@@ -101,7 +111,7 @@ const App: React.FC = () => {
           ChatBot Flow Builder
         </p>
         {message && (
-          <div className={`relative w-60 flex gap-2 items-center p-2 mt-2 rounded ${messageType === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
+          <div className={`relative w-[600px] flex gap-2 items-center p-2 rounded ${messageType === 'success' ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
             {message}
             <button onClick={handleMessageClose} className="absolute top-2 right-1 text-black  ">
               X

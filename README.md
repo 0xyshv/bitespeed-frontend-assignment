@@ -1,54 +1,39 @@
-![](https://github.com/xyflow/web/blob/main/assets/codesandbox-header-ts.png?raw=true)
+## Chatbot Flow Builder
 
-# React Flow starter (Vite + TS)
+It is a simple Chatbot flow builder using React and the code is extensible to easily add new features.
 
-We've put together this template to serve as a starting point for folks
-interested in React Flow. You can use this both as a base for your own React
-Flow applications, or for small experiments or bug reports.
+## Table of Contents
 
-**TypeScript not your thing?** We also have a vanilla JavaScript starter template,
-just for you!
+1. [Deployment Link](#deployment-link)
+2. [Instructions to setup and run locally ](#instructions-to-setup)
+3. [App Demo](#app-demo-screenshots)
 
-## Getting up and running
+## Deployment Link
 
-You can get this template without forking/cloning the repo using `degit`:
+- [Deployed URL]()
 
-```bash
-npx degit xyflow/vite-react-flow-template your-app-name
-```
+## Instructions to Setup
 
-The template contains mostly the minimum dependencies to get up and running, but
-also includes eslint and some additional rules to help you write React code that
-is less likely to run into issues:
+Follow these instructions to set up and run the project:
 
-```bash
-npm install # or `pnpm install` or `yarn install`
-```
+**Using Github**
 
-Vite is a great development server and build tool that we recommend our users to
-use. You can start a development server with:
+- Clone the Git repository: `https://github.com/0xyshv/bitespeed-frontend-assignment`
+- Install project dependencies: `npm install`
+- Start the development server: `npm run dev`
+- Access the web app in your browser at [http://localhost:5173/](http://localhost:5173/)
 
-```bash
-npm run dev
-```
+## App Demo Screenshots
 
-While the development server is running, changes you make to the code will be
-automatically reflected in the browser!
+![image](/public/appDemo/1.png)
+![image](/public/appDemo/2.jpg)
+![image](/public/appDemo/3.jpg)
+![image](/public/appDemo/4.jpg)
 
-## Things to try:
+### Github
 
-- Create a new custom node inside `src/nodes/` (don't forget to export it from `src/nodes/index.ts`).
-- Change how things look by [overriding some of the built-in classes](https://reactflow.dev/learn/customization/theming#overriding-built-in-classes).
-- Add a layouting library to [position your nodes automatically](https://reactflow.dev/learn/layouting/layouting)
+[Yashasvi Chaudhary](https://github.com/0xyshv)
 
-## Resources
+### Twitter / X
 
-Links:
-
-- [React Flow - Docs](https://reactflow.dev)
-- [React Flow - Discord](https://discord.com/invite/Bqt6xrs)
-
-Learn:
-
-- [React Flow – Custom Nodes](https://reactflow.dev/learn/customization/custom-nodes)
-- [React Flow – Layouting](https://reactflow.dev/learn/layouting/layouting)
+[Yashasvi Chaudhary](https://twitter.com/0xyshv)

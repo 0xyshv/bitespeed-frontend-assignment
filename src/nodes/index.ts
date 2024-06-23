@@ -1,7 +1,7 @@
 import type { Node, NodeTypes } from "reactflow";
 import { PositionLoggerNode } from "./PositionLoggerNode";
 
-export const initialNodes = [
+export const initialNodes: Node[] = [
   {
     id: "a",
     type: "position-logger",

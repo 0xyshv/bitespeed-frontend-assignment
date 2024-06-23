@@ -1,23 +1,23 @@
 import type { Node, NodeTypes } from "reactflow";
-import { PositionLoggerNode } from "./PositionLoggerNode";
+import { TextMessageNode } from "./TextMessageNode";
 
 export const initialNodes: Node[] = [
   {
     id: "a",
-    type: "position-logger",
+    type: "text-message",
     position: { x: -500, y: -100 },
-    data: { label: "Node 1" },
+    data: { label: "test-message 1" },
   },
 
   {
     id: "b",
-    type: "position-logger",
+    type: "text-message",
     position: { x: -200, y: 50 },
-    data: { label: "Node 2" },
+    data: { label: "test-message 2" },
   },
 ] satisfies Node[];
 
 export const nodeTypes = {
-  "position-logger": PositionLoggerNode,
+  "text-message": TextMessageNode,
   // Add any of your custom nodes here!
 } satisfies NodeTypes;

@@ -1,7 +1,7 @@
 import { MessageCirclePlusIcon } from 'lucide-react';
 import React from 'react';
 import type { Node, NodeTypes } from "reactflow";
-import { PositionLoggerNode } from '../nodes/PositionLoggerNode';
+import { TextMessageNode } from '../nodes/TextMessageNode';
 
 interface NodePanelProps {
   onAdd: (node: Node) => void;
@@ -11,7 +11,7 @@ const NodePanel: React.FC<NodePanelProps> = ({ onAdd }) => {
   const handleAddNode = () => {
     const newNode: Node = {
       id: `${Math.random()}`,
-      type: 'position-logger',
+      type: 'text-message',
       data: { label: 'Message' },
       position: { x: 250, y: 250 },
     };
@@ -37,6 +37,6 @@ const NodePanel: React.FC<NodePanelProps> = ({ onAdd }) => {
 export default NodePanel;
 
 export const nodeTypes = {
-  "position-logger": PositionLoggerNode,
+  "text-message": TextMessageNode,
   // Add any of your custom nodes here!
 } satisfies NodeTypes;

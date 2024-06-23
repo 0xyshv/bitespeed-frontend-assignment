@@ -2,13 +2,13 @@ import { MessageSquareTextIcon } from "lucide-react";
 import type { NodeProps } from "reactflow";
 import { Handle, Position } from "reactflow";
 
-export type PositionLoggerNodeData = {
+export type TextMessageNodeData = {
   label?: string;
 };
 
-export function PositionLoggerNode({
+export function TextMessageNode({
   data,
-}: NodeProps<PositionLoggerNodeData>) {
+}: NodeProps<TextMessageNodeData>) {
 
 
   return (
@@ -25,7 +25,7 @@ export function PositionLoggerNode({
           </div>
         </div>
       </div>
-      <div className="flex justify-center font-normal">
+      <div className="flex justify-center font-thin">
         {data.label && <div>{data.label}</div>}
       </div>
 

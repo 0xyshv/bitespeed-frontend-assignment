@@ -8,6 +8,7 @@ import {
   Connection,
   Edge,
   Node,
+  useReactFlow,
 } from 'reactflow';
 import 'reactflow/dist/style.css';
 import { initialNodes, nodeTypes } from './nodes';
@@ -17,7 +18,10 @@ import SettingsPanel from './components/settingsPanel';
 
 const STORAGE_KEY = 'reactflow_state';
 
-const App: React.FC = () => {
+let id = 2; // Two initial nodes with id chatbotnode_0 & chatbotnode_1 added by default
+const getId = () => `chatbotnode_${id++}`;
+
+const ChatBotFlow: React.FC = () => {
 
   // State hooks for nodes, edges, selected node, message, and message type
 
@@ -26,6 +30,7 @@ const App: React.FC = () => {
   const [selectedNode, setSelectedNode] = useState<Node | null>(null);
   const [message, setMessage] = useState<string | null>(null);
   const [messageType, setMessageType] = useState<'success' | 'error' | null>(null);
+  const { screenToFlowPosition } = useReactFlow();
 
   // Load saved flow from localStorage when the component mounts
   useEffect(() => {
@@ -37,6 +42,18 @@ const App: React.FC = () => {
     }
   }, [setNodes, setEdges]);
 
+  // Function to save the flow to localStorage
+  const saveFlow = () => {
+    if (hasMultipleEmptyTargetHandles(nodes, edges)) {
+      setMessageType('error');
+      setMessage('There are more than one nodes with empty target handles.');
+    } else {
+      const flow = { nodes, edges };
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(flow));
+      setMessageType('success');
+      setMessage('Flow saved successfully.');
+    }
+  };
 
   // Callback function to handle connecting nodes
   const onConnect = useCallback(
@@ -79,24 +96,40 @@ const App: React.FC = () => {
     setSelectedNode(null);
   };
 
+  // Drag and drop functionalities for message node
+  const onDragOver = useCallback((event: React.DragEvent) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = "move";
+  }, []);
+
+  const onDrop = useCallback(
+    (event: React.DragEvent) => {
+      event.preventDefault();
+      const type = event.dataTransfer.getData("application/reactflow");
+      // check if the dropped element is valid
+      if (typeof type === "undefined" || !type) {
+        return;
+      }
+      const position = screenToFlowPosition({
+        x: event.clientX,
+        y: event.clientY,
+      });
+      const newNode = {
+        id: getId(),
+        type,
+        position,
+        data: { label: `${type} node` },
+      };
+      addNode(newNode)
+    },
+    [screenToFlowPosition]
+  );
+
   // Function to check if there are multiple nodes with empty target handles
   const hasMultipleEmptyTargetHandles = (nodes: Node[], edges: Edge[]): boolean => {
     const targetNodeIds = new Set(edges.map(edge => edge.target));
     const nodesWithEmptyTargetHandles = nodes.filter(node => !targetNodeIds.has(node.id));
     return nodesWithEmptyTargetHandles.length > 1;
-  };
-
-  // Function to save the flow to localStorage
-  const saveFlow = () => {
-    if (hasMultipleEmptyTargetHandles(nodes, edges)) {
-      setMessageType('error');
-      setMessage('There are more than one nodes with empty target handles.');
-    } else {
-      const flow = { nodes, edges };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(flow));
-      setMessageType('success');
-      setMessage('Flow saved successfully.');
-    }
   };
 
   // Clear the timer if the component unmounts or message changes
@@ -117,9 +150,9 @@ const App: React.FC = () => {
     setMessageType(null);
   };
 
-
   return (
     <div className="flex flex-col h-screen">
+      {/* Header  */}
       <div className="bg-slate-100 p-2 flex justify-between items-center pr-24">
         <p className='font-bold text-violet-900'>
           ChatBot Flow Builder
@@ -138,9 +171,8 @@ const App: React.FC = () => {
         >
           Save Flow
         </button>
-
       </div>
-
+      {/* Chatbot Flow  */}
       <div className="flex flex-1">
         <ReactFlow
           nodes={nodes}
@@ -152,6 +184,8 @@ const App: React.FC = () => {
           onConnect={onConnect}
           onNodeClick={handleNodeClick}
           onPaneClick={handlePaneClick}
+          onDrop={onDrop}
+          onDragOver={onDragOver}
           fitView
         >
           <Controls />
@@ -164,7 +198,7 @@ const App: React.FC = () => {
               onBack={handleBack}
             />
           ) : (
-            <NodePanel onAdd={addNode} />
+            <NodePanel />
           )}
         </div>
       </div>
@@ -172,4 +206,4 @@ const App: React.FC = () => {
   );
 };
 
-export default App;
+export default ChatBotFlow;

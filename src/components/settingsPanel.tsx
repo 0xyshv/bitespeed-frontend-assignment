@@ -5,7 +5,7 @@ import { ArrowLeftIcon } from 'lucide-react';
 interface SettingsPanelProps {
   selectedNode: Node | null;
   onUpdate: (node: Node) => void;
-  onBack: () => void; // Add onBack prop for going back to NodePanel
+  onBack: () => void; // onBack prop for going back to NodePanel
 }
 
 const SettingsPanel: React.FC<SettingsPanelProps> = ({ selectedNode, onUpdate, onBack }) => {

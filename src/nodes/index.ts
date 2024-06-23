@@ -3,14 +3,14 @@ import { TextMessageNode } from "./TextMessageNode";
 
 export const initialNodes: Node[] = [
   {
-    id: "a",
+    id: "chatbotnode_0",
     type: "text-message",
     position: { x: -500, y: -100 },
     data: { label: "test-message 1" },
   },
 
   {
-    id: "b",
+    id: "chatbotnode_1",
     type: "text-message",
     position: { x: -200, y: 50 },
     data: { label: "test-message 2" },
